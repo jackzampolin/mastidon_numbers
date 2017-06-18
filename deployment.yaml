@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mastidon
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mastidon
+    spec:
+      containers:
+      - name: mastidon
+        image: "gcr.io/jackzampolin-web/mastidon:latest"
+        imagePullPolicy: Always
+        env:
+        - name: INFLUXDB_CONNECTION
+          value: "http://db-influxdb.tick:8086"
+        
